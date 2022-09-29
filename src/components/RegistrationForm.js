@@ -156,7 +156,7 @@ const RegistrationForm = () => {
        
         {
             
-        usertolist.map((user) =><div>
+        usertolist.map((user, index) =><div key={user.key}>
                        
         <table className="table table-hover ">
             <thead>
@@ -171,7 +171,7 @@ const RegistrationForm = () => {
             </thead>
             <tbody>
               <tr class="table-info">
-                <th scope="row">{user.key}</th>
+                <th scope="row">{index + 1}</th>
                 <td>{user.firstname}</td>
                 <td>{user.lastname}</td>
                 <td>{user.age}</td>
