@@ -1,0 +1,21 @@
+.footer {
+    background-color: #7d790c;
+    color: #FFF;
+}
+
+.social_list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.social_list li {
+    margin: 0 1em;
+}
+
+.social_list svg {
+    font-size: 3em;
+    cursor: pointer;
+    color: #FFF;
+}

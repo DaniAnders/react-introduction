@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #1a3058;
+  background-color: #11648a;
   /*min-height: 100vh;*/
    /*padding: 50 px;*/
   display: flex;
@@ -27,7 +27,7 @@
 
 
 .Form-Container {
-  background-color: #1a3058;
+  background-color: #7d790c;
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
   flex-direction: column;
