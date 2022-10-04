@@ -29,10 +29,14 @@ const UserInfo = ({props}) => {
                       <td>{user.email}</td>
                    </tr>
                  </tbody>
-              </Table>         
+              </Table>    
+      <pre>
+        <code>{JSON.stringify(props, null, 2)}</code>
+    </pre>     
     </Fragment>
             
     ) 
+
     )
 }
 

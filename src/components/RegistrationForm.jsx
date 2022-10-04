@@ -1,23 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import styles from  './RegistrationForm.module.css';
 
 
 
-const RegistrationForm = ({setNewUser}) => {
+const RegistrationForm = ({userdata, setUserData}) => {
 
-    const [userdata, setUserData] = useState(
-       {
-        firstname: '',
-        lastname: '',
-        age: '',
-        nationality: '',
-        email: '',
-        key: 1
-       }   
-    )
-  
-
+ 
     const handleUserInputChange = (event) => {
         setUserData(prev => ({
             ...prev, 
@@ -26,11 +15,24 @@ const RegistrationForm = ({setNewUser}) => {
         }))
     }
 
-      const sendUsersData = (event) => {
+
+    const setNewPerson =(user) => {
+         setUserData([     
+          {
+            ...user,
+            key: Date.now()
+    
+          }  
+        ])
+     
+      }
+
+
+    const sendUsersData = (event) => {
         alert( 'A form was submitted')
         event.preventDefault();
         event.target.reset();
-        setNewUser(userdata);
+        setNewPerson(userdata);
 }
 
 
@@ -95,6 +97,7 @@ const RegistrationForm = ({setNewUser}) => {
                 </div>
             </div>
         </form> 
+       
     </div>
        
      );
