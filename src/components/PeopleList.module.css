@@ -1,0 +1,13 @@
+.personlist{
+    background-color: #fff;
+    margin: 100px;  
+}
+
+.personlist ul{
+   list-style-type: none;
+   
+}
+
+.personlist li{
+    padding: 5px;
+ }

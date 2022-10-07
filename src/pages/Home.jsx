@@ -1,9 +1,11 @@
-function Home() {
+
+
+const Home = () => {
 
     return(
-        <div>
+        <div  style={{ backgroundColor: '#ebead9', color: 'rgba(0, 0, 0, 0.507)' , height: '300px'}}  >
             <h1>Home</h1>
-            <p>Home Content</p>
+            <h3>React Router Assignment</h3>
         </div>
     )
 }

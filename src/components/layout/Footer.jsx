@@ -16,7 +16,7 @@ const Footer = () => {
             <FaLinkedin/>
             </li>
           </ul>
-          <span> <strong> {new Date().getFullYear()} </strong> </span>
+          <span className={styles.social_list}>   <strong>© {"Created by Danielle Andersson"}</strong></span>
        </footer>
      
     )

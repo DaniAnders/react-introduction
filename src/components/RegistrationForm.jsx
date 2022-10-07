@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import Button from 'react-bootstrap/Button';
 import styles from  './RegistrationForm.module.css';
+import { PeopleContext } from '../contexts/PeopleContext';
 
 
 
-const RegistrationForm = ({setNewUser}) => {
+const RegistrationForm = () => {
 
+    const { setNewUser } = useContext(PeopleContext);
+    
     const [userdata, setUserData] = useState(
        {
         firstname: '',
@@ -15,8 +18,8 @@ const RegistrationForm = ({setNewUser}) => {
         email: '',
         key: 1
        }   
-    )
-  
+    );
+
 
     const handleUserInputChange = (event) => {
         setUserData(prev => ({
@@ -31,6 +34,7 @@ const RegistrationForm = ({setNewUser}) => {
         event.preventDefault();
         event.target.reset();
         setNewUser(userdata);
+       
 }
 
 

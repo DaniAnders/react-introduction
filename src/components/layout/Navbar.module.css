@@ -2,20 +2,22 @@
     display: flex;
     justify-content: space-between;
     background-color: #7d790c;
-}
-
-
-.navlist {
- display: flex;
- list-style: none;
-}
-
-.navitem Button{
-    background-color: #7d790c;
-    margin-right: 1em;
     color: #FFF;
-    font-weight: bold;
-    font-size: large;
 }
+
+
+.navitem {
+ list-style: none;
+ color: #FFF;
+ margin-bottom: 2em;
+ font-weight: bold;
+ font-size: 25px;
+}
+
+.logo{
+    display: grid;
+   
+}
+
 
 
