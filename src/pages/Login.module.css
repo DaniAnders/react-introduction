@@ -14,9 +14,9 @@
 .button {
     display: flex;
     justify-content: center;
-    height: 50px;
-    width: 200px;
-    margin-left: 10em;
+    height: 40px;
+    width: 160px;
+    margin-left: 12em;
     margin-top: 2em;
 }
 

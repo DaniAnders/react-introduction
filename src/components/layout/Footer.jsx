@@ -1,4 +1,5 @@
-import { FaFacebook, FaInstagram, FaLinkedin} from 'react-icons/fa'
+import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import { AiFillGithub } from 'react-icons/ai'
 import styles from './Footer.module.css'
 
 const Footer = () => {
@@ -14,6 +15,9 @@ const Footer = () => {
             </li>
             <li>
             <FaLinkedin/>
+            </li>
+            <li>
+            <AiFillGithub/>
             </li>
           </ul>
           <span className={styles.social_list}>   <strong>© {"Created by Danielle Andersson"}</strong></span>

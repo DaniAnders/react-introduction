@@ -5,6 +5,8 @@ export const AuthContext = createContext({
     setToken: () => {},
     user: null,
     setUser: () => {},
+    error: null,
+    setError: () => {}
 });
 
 
@@ -12,10 +14,11 @@ const AuthContextProvider = (props) => {
 
     const [token, setToken] = useState([]);
     const [user, setUser] = useState([]);
+    const [error, setError] = useState([]);
 
 
     return (
-        <AuthContext.Provider value={{token, setToken, user, setUser}}>
+        <AuthContext.Provider value={{token, setToken, user, setUser, error, setError}}>
             {props.children}
         </AuthContext.Provider>
      ); 

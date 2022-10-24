@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import React, { useContext} from "react";
 import { AuthContext } from '../../contexts/AuthContext';
 
+
 const Navbar = () => {
 
     const { token } = useContext(AuthContext);
@@ -22,11 +23,15 @@ const Navbar = () => {
             <Nav.Item className={styles.navitem}>
                 <Link to='/' style={{ textDecoration: 'none', color: '#FFF'}}>Home</Link>
             </Nav.Item>
+    
             <Nav.Item className={styles.navitem}>
-                <Link to='/registration' style={{ textDecoration: 'none', color: '#FFF' }}>Registration</Link>
+                <Link to='/peopletable' style={{ textDecoration: 'none', color: '#FFF' }}>People Table</Link>
             </Nav.Item>
             <Nav.Item className={styles.navitem}>
-                <Link to='/personlist' style={{ textDecoration: 'none', color: '#FFF' }}>Persons List</Link>
+                <Link to='/cities' style={{ textDecoration: 'none', color: '#FFF' }}>Cities</Link>
+            </Nav.Item>
+            <Nav.Item className={styles.navitem}>
+                <Link to='/countries' style={{ textDecoration: 'none', color: '#FFF' }}>Countries</Link>
             </Nav.Item>
             {(token.length !== 0) ? ( 
             <Nav.Item className={styles.navitem}>
@@ -37,9 +42,6 @@ const Navbar = () => {
                 <Link to='/login' style={{ textDecoration: 'none', color: '#FFF' }}>Login</Link>
             </Nav.Item>
             )}
-            <Nav.Item className={styles.navitem}>
-                 <Button variant="primary" size="sm">Change Theme</Button>
-            </Nav.Item>
         </Nav>
         </>
     )

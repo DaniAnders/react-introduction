@@ -5,10 +5,20 @@
     margin-right: 20em;
     margin-left: 20em;
     border-radius: 10px;
-    height: 300px;
+    height: 400px;
 }
 
 .personinfo ul{
     list-style-type: none;
     
  }
+
+ .button {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    width: 250px;
+    margin-left: 16em;
+    margin-top: 0.2em;
+    margin-bottom: 10em;
+}

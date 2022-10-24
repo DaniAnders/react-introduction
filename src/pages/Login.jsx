@@ -10,6 +10,8 @@ const Login = () => {
 
     const { setToken } = useContext(AuthContext);
     const { setUser } = useContext(AuthContext);
+    const { error } = useContext(AuthContext);
+    const { setError } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const initialState =() => {
@@ -17,14 +19,13 @@ const Login = () => {
     }
 
     const [uservalues, setUserValues] = useState(initialState);
-    const [error, setError] = useState(null);
-
+ 
 
     const login = ({username, password}) => {
-        if(username.trim().length !== 0 && password.trim().length !== 0){
+        if(username.trim().length !== 0 && password.trim().length !== 0 && password.trim().length == 6){
             return  {token: '123', user: username};
         }
-        return {error: 'Invalid username or password!'};
+        return {error: 'Invalid username or password! Password must have at least 6 characters!'};
     }
 
 
@@ -55,6 +56,7 @@ const Login = () => {
     return(
         <div className={styles.login_form}>
             <div className={styles.login}> <h3>Login</h3> </div>
+            {(error.length !== 0) ? (<h4>{error}</h4>) : (<p></p>) }
             <form onSubmit={onSubmit} >
             <div className="form-group row">
                 <label className="col-sm-3 col-form-label">Username</label>

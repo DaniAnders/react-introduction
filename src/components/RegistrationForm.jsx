@@ -1,107 +1,103 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
-import styles from  './RegistrationForm.module.css';
+import styles from './RegistrationForm.module.css';
 import { PeopleContext } from '../contexts/PeopleContext';
-
+import { ApiConfig } from '../services/ApiConfig';
+import axios from 'axios';
+import Select from 'react-select';
+import { useNavigate } from 'react-router-dom';
 
 
 const RegistrationForm = () => {
 
-    const { setNewUser } = useContext(PeopleContext);
-    
-    const [userdata, setUserData] = useState(
-       {
-        firstname: '',
-        lastname: '',
-        age: '',
-        nationality: '',
-        email: '',
-        key: 1
-       }   
-    );
+   const navigate = useNavigate();
+  
+   const { selectedPerson } = useContext(PeopleContext);
+   const { setSelectedPerson } = useContext(PeopleContext);
+   const { userslist } = useContext(PeopleContext);
+   const { setUsersList } = useContext(PeopleContext);
+   const { citiesList } = useContext(ApiConfig);
+   const { languagesList } = useContext(ApiConfig);
+   const { setUpdatePeopleList } = useContext(ApiConfig);
+
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedCityOption, setSelectedCityOption] = useState(null);
+  
+    const postPersonData = () => {
+  
+        delete selectedPerson.country;
+        selectedPerson.city = selectedCityOption.value;
+
+        let result = '';
+        {
+            selectedOption.map((item) =>
+                result += item.value + ','
+            )
+        }
+        selectedPerson.languages = result.slice(0, -1);
+
+
+        axios.post("https://localhost:5004/api/PeopleWebAPI/Post", selectedPerson, {
+            headers: {
+                'accept': '*/*',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                setUsersList(userslist.concat(response.data));
+                setUpdatePeopleList(true);
+                navigate('/peopletable');
+            }).catch(response => {
+                alert(JSON.stringify(selectedPerson, null, 2));
+                //alert(JSON.stringify(selectedOption, null, 2));
+                alert(response.data);
+                //console.log(error);
+            })
+    }
 
 
     const handleUserInputChange = (event) => {
-        setUserData(prev => ({
-            ...prev, 
-            [event.target.name] : event.target.value
-
-        }))
+        const { name, value } = event.target;
+        setSelectedPerson({
+            ...selectedPerson,
+            [name]: value
+        });
     }
-
-      const sendUsersData = (event) => {
-        alert( 'A form was submitted')
-        event.preventDefault();
-        event.target.reset();
-        setNewUser(userdata);
-       
-}
-
 
 
     return (
-    <div className={styles.form_container}>       
-        <h2> Registration </h2>
-        <form className="form" onSubmit={sendUsersData}>
-            <div className="form-group row">
-                <label className="col-sm-3 col-form-label">First Name</label>
-                <div className="col-sm-5">
-                    <input className={styles.input}
-                     type="text"
-                     placeholder="First Name"
-                     name="firstname"
-                     onChange={handleUserInputChange} required></input>
+        <div className={styles.form_container}>
+            <h2>Add new person</h2>
+            <div className="form-group">
+                <label>SSN</label>
+                <input type="text" className="form-control" name="ssn" onChange={handleUserInputChange} />
+                <label>First Name</label>
+                <input type="text" className="form-control" name="firstName" onChange={handleUserInputChange} />
+                <label>Last Name</label>
+                <input type="text" className="form-control" name="lastName" onChange={handleUserInputChange} />
+                <label>Phone</label>
+                <input type="text" className="form-control" name="phone" onChange={handleUserInputChange} />
+                <label>City</label>
+                <Select
+                    defaultValue={selectedCityOption}
+                    onChange={setSelectedCityOption}
+                    options={citiesList.map(city => ({ value: city.cityName, label: city.cityName }))}
+                />
+                <label>Languages</label>
+                <Select
+                    isMulti
+                    defaultValue={selectedOption}
+                    onChange={setSelectedOption}
+                    options={languagesList.map(lan => ({ value: lan.languageName, label: lan.languageName }))}
+                />
+                <div>
+                    <Button  className="btn btn-primary" onClick={() => postPersonData()}>Add</Button>{" "}
+                    <Button className="btn btn-danger" onClick={() => navigate('/')}>Cancel</Button>
                 </div>
             </div>
-            <div className="form-group row">
-                <label class="col-sm-3 col-form-label">Last Name</label>
-                <div className="col-sm-5">
-                    <input className={styles.input}
-                    type="text"
-                    placeholder="Last Name"
-                    name="lastname"
-                    onChange={handleUserInputChange} required></input>
-                </div>
-            </div>
-            <div className="form-group row">
-                <label  class="col-sm-3 col-form-label">Age</label>
-                <div className="col-sm-5">
-                    <input className={styles.input}
-                    type="text"
-                    placeholder="Age"
-                    name="age"
-                    onChange={handleUserInputChange} required></input>
-                </div>
-            </div>
-            <div className="form-group row">
-                <label class="col-sm-3 col-form-label">Nationality</label>
-                <div className="col-sm-5">
-                    <input className={styles.input}
-                     type="text"
-                     placeholder="Nationality"
-                     name="nationality"
-                     onChange={handleUserInputChange} required></input>
-                </div>
-            </div>
-            <div className="form-group row">
-                <label class="col-sm-3 col-form-label">Email</label>
-                <div className="col-sm-5">
-                    <input className={styles.input}
-                    type="email"
-                    placeholder="Email"
-                    name="email"
-                    onChange={handleUserInputChange} required></input>
-                </div>
-            </div> 
-            <div className="form-group row">
-                <div lassName="col-sm-5">
-                   <Button  className={styles.button}type="submit" variant="success" size="lg" >Submit</Button>
-                </div>
-            </div>
-        </form> 
-    </div>
-       
-     );
+        </div>
+
+    );
 }
 
 export default RegistrationForm;

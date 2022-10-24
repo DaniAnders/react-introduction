@@ -5,6 +5,20 @@ export const PeopleContext = createContext();
 const PeopleContextProvider = (props) => {
 
     const [users, setUsers] = useState([]);
+
+    const [userslist, setUsersList] = useState([]);
+    const [selectedPerson, setSelectedPerson] = useState(
+      {        
+          ssn: '',
+          firstName: '',
+          lastName: '',
+          phone: '',
+          city: '',
+          // country: '',
+          languages: ''
+        
+      }
+  )
     
 
      const setNewUser =(newUser) => {
@@ -45,7 +59,7 @@ const PeopleContextProvider = (props) => {
 
 
      return (
-        <PeopleContext.Provider value={{users, setNewUser, removeUser, showPersonInfo}}>
+        <PeopleContext.Provider value={{users, setNewUser, removeUser, showPersonInfo, userslist, setUsersList, selectedPerson, setSelectedPerson}}>
             {props.children}
         </PeopleContext.Provider>
      );  

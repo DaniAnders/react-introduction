@@ -4,13 +4,13 @@
     margin-right: 12em;
     margin-left: 12em;
     border-radius: 10px;
-    height: 400px;
+    height: 500px;
     color:rgba(0, 0, 0, 0.507);
     font-weight: bold;
 
 }
 
-.button {
+.Button {
     display: flex;
     justify-content: center;
     width: 235px;

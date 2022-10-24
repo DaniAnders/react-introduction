@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Routes, Route} from 'react-router-dom'
 import './App.css';
 import Home from './pages/Home';
@@ -12,32 +12,40 @@ import PersonInfo from './components/PersonInfo';
 import Error from './components/Error';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
+import ApiConfigProvider from './services/ApiConfig';
+import PeopleTable from './components/crud/PeopleTable';
+import Cities from './components/crud/Cities';
+import Countries from './components/crud/Countries';
+
 
 
 
 function App() {
 
-  const [navigation, setNavigation] = useState(1);
- 
 
-
+  
   return (
     
   <> 
-   
+    
+ 
     <PeopleContextProvider>
       <AuthContextProvider>
+      <ApiConfigProvider>
         <Navbar />
     <Routes>
         <Route path='/' exact element={<Home />} />
         <Route path='/registration' element={<RegistrationForm />} />
-        <Route path='/personlist' element={<PeopleList />} />
-        <Route path='/personlist/:firstname' element={<PersonInfo />} />
         <Route path='/login' element={<Login />} />
         <Route path='/logout' element={<Logout />} />
+        <Route path='/peopletable' element={<PeopleTable  />} />
+        <Route path='/peopletable/:ssn' element={<PersonInfo />} />
+        <Route path='/cities' element={<Cities  />} />
+        <Route path='/countries' element={<Countries  />} />
         <Route path="*" element={<Error />} />
        
     </Routes>
+      </ApiConfigProvider>
       </AuthContextProvider> 
     </PeopleContextProvider>
   

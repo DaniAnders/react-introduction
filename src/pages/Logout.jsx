@@ -27,7 +27,7 @@ const Logout = () => {
 
     return(
         <div style={{ backgroundColor: '#ebead9', color: 'rgba(0, 0, 0, 0.507)' , height: '300px'}}>
-            <h3>Click the button to log out!</h3>
+            <h3> Hi, {user} confirm you want to log out!</h3>
             <form onSubmit={onSubmit}>
             <div className="form-group row">
                 <label className="col-sm-3 col-form-label">Username:{user}</label>
